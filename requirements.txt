@@ -1,4 +1,6 @@
-streamlit>=1.22.0
-textblob>=0.15.3
-pandas>=1.5.0
-googletrans==4.0.0-rc1
+streamlit
+textblob==0.17.1
+gTTS==2.2.2
+googletrans==4.0.0rc1
+streamlit-lottie
+requests
