@@ -2,75 +2,80 @@ import streamlit as st
 from textblob import TextBlob
 from googletrans import Translator
 
-# 🎨 Estilos generales con alto contraste y diseño accesible
+# 🎨 Estilos vibrantes y combinados con tipografía elegante
 st.markdown("""
     <style>
     .stApp {
-        background-color: #fdfdfd;
-        color: #1a1a1a;
-        font-family: 'Segoe UI', sans-serif;
+        background-color: #fff9f0;
+        color: #2e2e2e;
+        font-family: 'Helvetica Neue', sans-serif;
     }
     textarea, .stTextInput>div>div>input {
         background-color: #ffffff;
-        color: #000000;
-        border: 1px solid #cccccc;
-        padding: 0.5rem;
+        color: #2e2e2e;
+        border: 2px solid #fbbf24;
+        border-radius: 8px;
+        padding: 0.6rem;
     }
     .stButton>button {
-        background-color: #005f73;
+        background-color: #f97316;
         color: white;
+        font-weight: bold;
         border: none;
         padding: 0.6rem 1.2rem;
-        border-radius: 6px;
-        font-weight: bold;
+        border-radius: 10px;
+        transition: 0.3s ease;
     }
     .stButton>button:hover {
-        background-color: #0a9396;
+        background-color: #ea580c;
         color: #ffffff;
     }
     .st-expanderHeader {
-        background-color: #e3f2f7;
-        color: #003844;
+        background-color: #fcd34d;
+        color: #3f3f46;
+        font-weight: 600;
+        border-radius: 6px;
         padding: 0.5rem;
-        border-radius: 4px;
+    }
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3 {
+        color: #e11d48;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# 🎨 Sidebar con mejor contraste y tono profesional
+# 🎨 Sidebar con combinación armoniosa
 st.markdown("""
     <style>
     .css-1d391kg {
-        background-color: #e6f1f5 !important;
+        background-color: #ffe4e6 !important;
     }
     .css-1v3fvcr, .css-1d391kg .sidebar-content {
-        color: #003844 !important;
+        color: #9f1239 !important;
     }
     </style>
 """, unsafe_allow_html=True)
 
 translator = Translator()
 
-# 🧠 Encabezado principal
-st.title("💬 Análisis Emocional Exprés")
-st.caption("Explora la polaridad y subjetividad de tus textos con un solo clic.")
+# 🧠 Encabezado principal vibrante
+st.title("🌺 LENGUA EMOCIONAL")
+st.caption("Descubre cómo se sienten tus palabras: emociones, percepción y más.")
 
-# 📊 Sidebar con explicaciones breves y claras
+# 📊 Sidebar explicativo con tonos rosados suaves
 with st.sidebar:
-    st.header("📈 Indicadores emocionales")
+    st.header("🎯 Indicadores emocionales")
     st.markdown("""
-    <div style='color:#003844'>
-    <b>Polaridad:</b> Valor entre -1 y 1 que indica el tono emocional del texto. <br><br>
-    <b>Subjetividad:</b> Rango de 0 (objetivo) a 1 (subjetivo), muestra si el texto es más racional o emocional.
+    <div style='color:#9f1239; font-size:16px;'>
+    <b>Polaridad:</b> Un número entre -1 (negativo) y 1 (positivo). <br><br>
+    <b>Subjetividad:</b> Va de 0 (objetivo) a 1 (subjetivo). Refleja cuánto del texto es emocional o personal.
     </div>
     """, unsafe_allow_html=True)
 
-# ✍️ Entrada de texto
-with st.expander("📝 Analizar texto"):
-    texto_input = st.text_area("Introduce tu texto aquí (en español, inglés u otro idioma):")
+# ✍️ Área de texto y análisis
+with st.expander("💬 Analizar emociones del texto"):
+    texto_input = st.text_area("Escribe aquí tu texto en cualquier idioma:")
 
     if texto_input.strip():
-        # Traducción y análisis
         traduccion = translator.translate(texto_input, src="auto", dest="en")
         texto_en = traduccion.text
         blob = TextBlob(texto_en)
@@ -78,18 +83,17 @@ with st.expander("📝 Analizar texto"):
         pol = round(blob.sentiment.polarity, 2)
         sub = round(blob.sentiment.subjectivity, 2)
 
-        st.markdown("### 📌 Resultados")
-        st.write(f"**Polaridad:** `{pol}`")
-        st.write(f"**Subjetividad:** `{sub}`")
+        st.markdown("### 🎨 Resultados de análisis")
+        st.write(f"**🌈 Polaridad:** `{pol}`")
+        st.write(f"**🧠 Subjetividad:** `{sub}`")
 
-        # Resultado emocional con mensajes contrastantes
         if pol >= 0.5:
-            st.success("🔷 El texto transmite una emoción **positiva**.")
+            st.success("💖 El texto refleja una emoción **positiva**.")
         elif pol <= -0.5:
-            st.error("🔴 El texto expresa una emoción **negativa**.")
+            st.error("💔 El texto expresa una emoción **negativa**.")
         else:
-            st.info("🟡 El texto tiene un tono **neutral** o equilibrado.")
+            st.info("💬 El texto tiene un tono **neutral** o equilibrado.")
 
-# 🧾 Pie de página
+# ✨ Footer
 st.markdown("---")
-st.caption("Desarrollado con Streamlit, TextBlob y Google Translate | Estilo accesible con contraste optimizado.")
+st.caption("🧪 Hecho con ❤️ usando Streamlit, TextBlob y Google Translate. Estilo vibrante y armónico.")
