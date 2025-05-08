@@ -96,4 +96,4 @@ with st.expander("💬 Analizar emociones del texto"):
 
 # ✨ Footer
 st.markdown("---")
-st.caption("🧪 Hecho con ❤️ usando Streamlit, TextBlob y Google Translate. Estilo vibrante y armónico.")
+st.caption("🧪 Hecho con ❤️ usando Streamlit, TextBlob y Google Translate.")
